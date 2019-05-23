@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Coldairarrow.WebApi</name>
+    </assembly>
+    <members>
+        <member name="P:Coldairarrow.WebApi.PolicyHandler.Schemes">
+            <summary>
+            授权方式（cookie, bearer, oauth, openid）
+            </summary>
+        </member>
+        <member name="F:Coldairarrow.WebApi.PolicyHandler._jwtApp">
+            <summary>
+            jwt 服务
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.PolicyHandler.#ctor(Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider,Coldairarrow.WebApi.IJwtAppService)">
+            <summary>
+            ctor
+            </summary>
+            <param name="schemes"></param>
+            <param name="jwtApp"></param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.PolicyHandler.Menu">
+            <summary>
+            测试菜单类
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.WebApi.CheckParamNotEmptyAttribute">
+            <summary>
+            参数非空校验
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckParamNotEmptyAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckParamNotEmptyAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.CheckUrlPermissionAttribute">
+            <summary>
+            校验用户接口权限
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckUrlPermissionAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckUrlPermissionAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.IgnoreUrlPermissionAttribute">
+            <summary>
+            忽略校验用户接口权限
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.WebApi.CheckAppIdPermissionAttribute">
+            <summary>
+            校验AppId接口权限
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckAppIdPermissionAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckAppIdPermissionAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.CheckSignAttribute">
+            <summary>
+            校验签名
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckSignAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckSignAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.IgnoreAppIdPermissionAttribute">
+            <summary>
+            忽略校验AppId接口权限
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.WebApi.IgnoreSignAttribute">
+            <summary>
+            忽略接口签名校验
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.WebApi.CheckLoginAttribute">
+            <summary>
+            校验登录
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckLoginAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.CheckLoginAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.IgnoreLoginAttribute">
+            <summary>
+            忽略登录校验
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.WebApi.IJwtAppService">
+            <summary>
+            Jwt Token 操作功能接口
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IJwtAppService.Create(Coldairarrow.Entity.Base_SysManage.Base_User)">
+            <summary>
+            新增 Jwt token
+            </summary>
+            <param name="dto">用户信息数据传输对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IJwtAppService.RefreshAsync(System.String,Coldairarrow.Entity.Base_SysManage.Base_User)">
+            <summary>
+            刷新 Token
+            </summary>
+            <param name="token">Token</param>
+            <param name="dto">用户信息数据传输对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IJwtAppService.IsCurrentActiveTokenAsync">
+            <summary>
+            判断当前 Token 是否有效
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IJwtAppService.DeactivateCurrentAsync">
+            <summary>
+            停用当前 Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IJwtAppService.IsActiveAsync(System.String)">
+            <summary>
+            判断 Token 是否有效
+            </summary>
+            <param name="token">Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IJwtAppService.DeactivateAsync(System.String)">
+            <summary>
+            停用 Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Coldairarrow.WebApi.JwtAppService._tokens">
+            <summary>
+            已授权的 Token 信息集合
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.Create(Coldairarrow.Entity.Base_SysManage.Base_User)">
+            <summary>
+            新增 Token
+            </summary>
+            <param name="dto">用户信息数据传输对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.DeactivateAsync(System.String)">
+            <summary>
+            停用 Token
+            </summary>
+            <param name="token">Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.DeactivateCurrentAsync">
+            <summary>
+            停用当前 Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.IsActiveAsync(System.String)">
+            <summary>
+            判断 Token 是否有效
+            </summary>
+            <param name="token">Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.IsCurrentActiveTokenAsync">
+            <summary>
+            判断当前 Token 是否有效
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.RefreshAsync(System.String,Coldairarrow.Entity.Base_SysManage.Base_User)">
+            <summary>
+            刷新 Token
+            </summary>
+            <param name="token">Token</param>
+            <param name="dto">用户信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.GetKey(System.String)">
+            <summary>
+            设置缓存中过期 Token 值的 key
+            </summary>
+            <param name="token">Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.GetCurrentAsync">
+            <summary>
+            获取 HTTP 请求的 Token 值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.JwtAppService.GetExistenceToken(System.String)">
+            <summary>
+            判断是否存在当前 Token
+            </summary>
+            <param name="token">Token</param>
+            <returns></returns>
+        </member>
+        <member name="T:Coldairarrow.WebApi.IApplicationBuilderExtension">
+            <summary>
+            针对中间件的扩展类
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.IApplicationBuilderExtension.UseParameterMappingMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            参数映射扩展
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController">
+            <summary>
+            菜单管理控制器
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.GetData(System.String)">
+            <summary>
+            根据id获取数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.GetDataList(System.String,System.String,Coldairarrow.Util.Pagination)">
+            <summary>
+            获取数据列表
+            </summary>
+            <param name="condition">查询类型</param>
+            <param name="keyword">关键字</param>
+            <param name="pagination">分页</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.SaveData(Coldairarrow.Entity.Base_SysManage.Base_SysNavigation)">
+            <summary>
+            保存
+            </summary>
+            <param name="theData">保存的数据</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.DeleteData(System.String)">
+            <summary>
+            删除数据
+            </summary>
+            <param name="ids">删除的数据id</param>
+        </member>
+        <member name="T:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController">
+            <summary>
+            登录管理控制器
+            </summary>
+        </member>
+        <member name="F:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController._jwtApp">
+            <summary>
+            Jwt 服务
+            </summary>
+        </member>
+        <member name="F:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController._homeBus">
+            <summary>
+            用户服务
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.#ctor(Coldairarrow.WebApi.IJwtAppService,Coldairarrow.Business.Base_SysManage.IHomebusiness)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="jwtApp"></param>
+            <param name="homebus"></param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.LoginSubmit(Coldairarrow.Entity.SecretDto)">
+            <summary>
+            获取 Jwt 授权数据
+            </summary>
+            <param name="dto">授权用户信息</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.CancelAccessToken">
+            <summary>
+            停用Jwt授权数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.RefreshAccessToken(Coldairarrow.Entity.SecretDto)">
+            <summary>
+            刷新Jwt授权数据
+            </summary>
+            <param name="dto">刷新授权用户信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Coldairarrow.WebApi.Controllers.ValuesController">
+            <summary>
+            测试控制器
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.ValuesController.Get">
+            <summary>
+            测试Get方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            测试Get方法
+            </summary>
+            <param name="id">参数ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Http.Extention">
+            <summary>
+            拓展类
+            </summary>
+            <summary>
+            拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Extention.Scrpit(Microsoft.AspNetCore.Mvc.IUrlHelper,System.String)">
+            <summary>
+            获取最新的s文件或css文件
+            注：解决缓存问题，只有文件修改后才会获取最新版
+            </summary>
+            <param name="helper"></param>
+            <param name="scriptVirtualPath"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
