@@ -1,8 +1,3 @@
-# Colder.Fx.Core.AdminLTE
-Web后台快速开发框架,.NETCore2.1+AdminLTE版本
-
-使用方式：https://github.com/Coldairarrow/Colder.Fx.Core.AdminLTE/wiki
-
-国内镜像：https://gitee.com/Coldairarrow/Colder.Fx.Core.AdminLTE
-
-博客介绍：https://www.cnblogs.com/coldairarrow/p/10507136.html
+# 目标管理框架
+根据.NETCore2.1+AdminLTE版本来进行修改为前后台分离框架
+目前是半成品
