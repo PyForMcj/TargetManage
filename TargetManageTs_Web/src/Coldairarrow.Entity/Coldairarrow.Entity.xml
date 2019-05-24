@@ -539,6 +539,36 @@
             CraeteUserName
             </summary>
         </member>
+        <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog">
+            <summary>
+            用户操作日志表
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog.Id">
+            <summary>
+            代理主键
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog.LogType">
+            <summary>
+            日志类别
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog.LogContent">
+            <summary>
+            日志内容
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog.OpUserName">
+            <summary>
+            操作人
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog.OpTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_UnitTest">
             <summary>
             单元测试表

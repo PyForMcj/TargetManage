@@ -31,6 +31,7 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("GetData")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "查询菜单" })]
         public IActionResult GetData(string id)
         {
             var theData = id.IsNullOrEmpty() ? new Base_SysNavigation() : _base_SysNavigationBusiness.GetTheData(id);
@@ -56,6 +57,7 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
         /// <param name="pagination">分页</param>
         /// <returns></returns>
         [HttpPost("GetDataList")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "查询菜单" })]
         public IActionResult GetDataList(string condition, string keyword, Pagination pagination)
         {
             var dataList = _base_SysNavigationBusiness.GetDataList(condition, keyword, pagination);
@@ -79,6 +81,7 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
         /// </summary>
         /// <param name="theData">保存的数据</param>
         [HttpPost("SaveData")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "新增或修改菜单" })]
         public ActionResult SaveData(Base_SysNavigation theData)
         {
             string msg = string.Empty;
@@ -110,6 +113,7 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
         /// </summary>
         /// <param name="ids">删除的数据id</param>
         [HttpGet("DeleteData")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "删除菜单" })]
         public ActionResult DeleteData(string ids)
         {
             _base_SysNavigationBusiness.DeleteData(ids.ToList<string>());

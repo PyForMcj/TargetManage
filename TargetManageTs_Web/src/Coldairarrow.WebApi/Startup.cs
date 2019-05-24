@@ -154,6 +154,7 @@ namespace Coldairarrow.WebApi
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IJwtAppService, JwtAppService>(); //token处理
+            services.AddTransient<IUserOperationLog, UserOperationLog>(); //用户操作日志
             services.AddSingleton(Configuration);
             services.AddSingleton<IAuthorizationHandler, PolicyHandler>(); //注入自定义的基于策略授权的实现
             services.AddLogging();

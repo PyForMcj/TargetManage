@@ -30,14 +30,14 @@ namespace Coldairarrow.Web
         private static List<Menu> _allMenu { get; set; }
         private static void InitAllMenu()
         {
-            Action<Menu, XElement> SetMenuProperty = (menu, element) =>
+            void SetMenuProperty(Menu menu, XElement element)
             {
                 List<string> exceptProperties = new List<string> { "id", "IsShow", "targetType", "isHeader", "children", "_url" };
                 menu.GetType().GetProperties().Where(x => !exceptProperties.Contains(x.Name)).ForEach(aProperty =>
                 {
                     aProperty.SetValue(menu, element.Attribute(aProperty.Name)?.Value);
                 });
-            };
+            }
 
             string filePath = _configFile;
             XElement xe = XElement.Load(filePath);

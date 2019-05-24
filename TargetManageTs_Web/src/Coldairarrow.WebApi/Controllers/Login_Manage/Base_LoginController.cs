@@ -28,7 +28,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         private readonly IJwtAppService _jwtApp;
 
         /// <summary>
-        /// 用户服务
+        /// 用户登录
         /// </summary>
         private readonly IHomebusiness _homeBus;
 
@@ -39,7 +39,8 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         /// </summary>
         /// <param name="jwtApp"></param>
         /// <param name="homebus"></param>
-        public Base_LoginController(IJwtAppService jwtApp, IHomebusiness homebus)
+        /// <param name="userOperationLog"></param>
+        public Base_LoginController(IJwtAppService jwtApp, IHomebusiness homebus, IUserOperationLog userOperationLog)
         {
             _jwtApp = jwtApp;
             _homeBus = homebus;
@@ -54,6 +55,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         [HttpPost("LoginSubmit")]
         [AllowAnonymous]
         [CheckParamNotEmpty("userName", "password")]
+        [TypeFilter(typeof(UserOperationLogAttribute),Arguments = new object[] { "登录系统"})]
         public IActionResult LoginSubmit(SecretDto dto)
         {
             //Todo：获取用户信息
@@ -80,7 +82,6 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                     });
 
             var jwt = _jwtApp.Create(user);
-
             return Ok(
                 new AjaxResult
                 {
@@ -108,6 +109,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         /// </summary>
         /// <returns></returns>
         [HttpPost("CancelAccessToken")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "退出系统" })]
         public IActionResult CancelAccessToken()
         {
             _jwtApp.DeactivateCurrentAsync();
@@ -126,6 +128,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         /// <param name="dto">刷新授权用户信息</param>
         /// <returns></returns>
         [HttpPost("RefreshAccessToken")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "刷新Token" })]
         public IActionResult RefreshAccessToken(SecretDto dto)
         {
             //Todo：获取用户信息

@@ -64,9 +64,11 @@ namespace Coldairarrow.Util
         /// <returns></returns>
         public static string PostData(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
         {
-            Dictionary<ContentType, string> mapping = new Dictionary<ContentType, string>();
-            mapping.Add(ContentType.Form, "application/x-www-form-urlencoded");
-            mapping.Add(ContentType.Json, "application/json");
+            Dictionary<ContentType, string> mapping = new Dictionary<ContentType, string>
+            {
+                { ContentType.Form, "application/x-www-form-urlencoded" },
+                { ContentType.Json, "application/json" }
+            };
 
             string body = BuildBody(paramters, contentType);
             return PostData(url, body, mapping[contentType], headers, cerFile);
