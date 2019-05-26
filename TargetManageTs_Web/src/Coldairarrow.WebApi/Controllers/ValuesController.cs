@@ -20,6 +20,7 @@ namespace Coldairarrow.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "获取用户数据" })]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
