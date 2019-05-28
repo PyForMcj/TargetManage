@@ -65,11 +65,11 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                 return Ok(
                     new AjaxResult
                     {
-                        Success = true,
-                        Msg = "无权访问！",
+                        Success = false,
+                        Msg = "用户名或密码错误！",
                         Data = new JwtResponseDto
                         {
-                            Access = "无权访问！",
+                            Access = "用户名或密码错误！",
                             Type = "Bearer",
                             Profile = new Profile
                             {
@@ -138,11 +138,11 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                 return Ok(
                     new AjaxResult
                     {
-                        Success = true,
-                        Msg = "无权访问！",
+                        Success = false,
+                        Msg = "用户名或密码错误！",
                         Data = new JwtResponseDto
                         {
-                            Access = "无权访问！",
+                            Access = "用户名或密码错误！",
                             Type = "Bearer",
                             Profile = new Profile
                             {
@@ -160,7 +160,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                 new AjaxResult
                 {
                     Success = true,
-                    Msg = "刷新成功！",
+                    Msg = "Token刷新成功！",
                     Data = new JwtResponseDto
                     {
                         Access = jwt.Token,

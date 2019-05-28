@@ -319,6 +319,46 @@
             </summary>
             <param name="ids">删除的数据id</param>
         </member>
+        <member name="T:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_UserController">
+            <summary>
+            用户管理控制器
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_UserController.GetData(System.String)">
+            <summary>
+            根据id获取数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_UserController.GetDataList(System.String,System.String,Coldairarrow.Util.Pagination)">
+            <summary>
+            获取数据列表
+            </summary>
+            <param name="condition">查询类型</param>
+            <param name="keyword">关键字</param>
+            <param name="pagination">分页</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_UserController.SaveData(Coldairarrow.Entity.Base_SysManage.Base_User)">
+            <summary>
+            保存
+            </summary>
+            <param name="theData">保存的数据</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_UserController.DeleteData(System.String)">
+            <summary>
+            删除数据
+            </summary>
+            <param name="ids">删除的数据id</param>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_UserController.GetCurrentUserInfo(System.String)">
+            <summary>
+            根据id获取数据
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="T:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController">
             <summary>
             登录管理控制器

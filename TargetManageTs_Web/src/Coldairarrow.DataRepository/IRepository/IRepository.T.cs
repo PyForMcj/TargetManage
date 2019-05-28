@@ -51,6 +51,8 @@ namespace Coldairarrow.DataRepository
         IQueryable<T> GetIQueryable();
         DataTable GetDataTableWithSql(string sql);
         DataTable GetDataTableWithSql(string sql, List<DbParameter> parameters);
+        DataSet GetDataSetWithSql(string sql);
+        DataSet GetDataSetWithSql(string sql, List<DbParameter> parameters);
         List<U> GetListBySql<U>(string sqlStr) where U : class, new();
         List<U> GetListBySql<U>(string sqlStr, List<DbParameter> param) where U : class, new();
 

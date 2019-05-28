@@ -367,6 +367,27 @@ namespace Coldairarrow.Business
         }
 
         /// <summary>
+        /// 通过Sql查询返回DataSet
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <returns></returns>
+        public DataSet GetDataSetWithSql(string sql)
+        {
+            return Service.GetDataSetWithSql(sql);
+        }
+
+        /// <summary>
+        /// 通过Sql参数查询返回DataSet
+        /// </summary>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="parameters">查询参数</param>
+        /// <returns></returns>
+        public DataSet GetDataSetWithSql(string sql, List<DbParameter> parameters)
+        {
+            return Service.GetDataSetWithSql(sql, parameters);
+        }
+
+        /// <summary>
         /// 通过sql返回List
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>

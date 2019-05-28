@@ -61,9 +61,28 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String Phone { get; set; }
 
         /// <summary>
-        /// 角色集合
+        /// 用户与角色关系集合
         /// </summary>
         [NotMapped]
         public IQueryable<Base_UserRoleMap> Base_UserRoleMaps { get; set; }
+
+        /// <summary>
+        /// 角色集合
+        /// </summary>
+        [NotMapped]
+        public IQueryable<Base_SysRole> Base_SysRoles { get; set; }
+
+        /// <summary>
+        /// 菜单集合
+        /// </summary>
+        [NotMapped]
+        public IQueryable<Base_SysNavigation> Base_SysNavigations{ get; set; }
+
+        /// <summary>
+        /// 按钮集合
+        /// </summary>
+        [NotMapped]
+        public IQueryable<Base_SysButton> Base_SysButtons { get; set; }
     }
+    
 }

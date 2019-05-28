@@ -21,6 +21,7 @@ namespace Coldairarrow.Entity
 
         /// <summary>
         /// 登录后授权的 Token
+        /// 刷新 Toekn 的时候使用
         /// </summary>
         public string Token { get; set; }
     }

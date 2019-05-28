@@ -4,6 +4,9 @@ using Coldairarrow.Entity.Base_SysManage;
 using Coldairarrow.Util;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
@@ -13,8 +16,8 @@ namespace Coldairarrow.Business.Base_SysManage
     public class Base_UserBusiness : BaseBusiness<Base_User>
     {
         static Base_UserModelCache _cache { get; } = new Base_UserModelCache();
-        
-        #region 外部接口
+
+        #region Mvc版本
 
         /// <summary>
         /// 获取数据列表
@@ -206,6 +209,64 @@ namespace Coldairarrow.Business.Base_SysManage
 
             Service.Insert(insertList);
         }
+
+        #endregion
+
+        #region WeiApi版本
+
+        #region 根据UserID获取用户所有权限信息
+
+        /// <summary>
+        /// 根据UserID获取用户所有权限信息
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <returns></returns>
+        public Base_User GetCurrentUserInfo(string userId)
+        {
+            var param = new List<DbParameter>
+            {
+                new SqlParameter("@userId", userId)
+            };
+            Base_User data=null;
+            string sqlStr = @"SELECT * FROM dbo.Base_User WHERE UserId=@userId;
+SELECT a.* FROM dbo.Base_SysRole a INNER JOIN dbo.Base_UserRoleMap b ON a.RoleId=b.RoleId WHERE b.UserId=@userId;
+SELECT DISTINCT(a.Id),a.* FROM dbo.Base_SysNavigation a 
+INNER JOIN dbo.Base_SysRoleNavMap b ON a.Id=b.NavId
+INNER JOIN dbo.Base_SysRole c ON b.RoleId=c.RoleId
+INNER JOIN dbo.Base_UserRoleMap d ON c.RoleId=d.RoleId WHERE d.UserId=@userId;
+SELECT DISTINCT(a.Id),a.* FROM dbo.Base_SysButton a 
+INNER JOIN dbo.Base_SysRoleButtonMap b ON a.Id=b.BtnId
+INNER JOIN dbo.Base_SysRole c ON b.RoleId=c.RoleId
+INNER JOIN dbo.Base_UserRoleMap d ON c.RoleId=d.RoleId WHERE d.UserId=@userId;
+";
+            var dataSet = GetDataSetWithSql(sqlStr, param);
+            if (dataSet.Tables.Count != 0)
+            {
+                //dataSet[0] 用户信息
+                if (dataSet.Tables[0] != null)
+                {
+                    data=dataSet.Tables[0].ToList<Base_User>().FirstOrDefault();
+                }
+                //dataSet[1] 角色集合
+                if (dataSet.Tables[1] != null && data != null)
+                {
+                    data.Base_SysRoles = dataSet.Tables[1].ToList<Base_SysRole>().AsQueryable();
+                }
+                //dataSet[2] 菜单集合
+                if (dataSet.Tables[2] != null && data != null)
+                {
+                    data.Base_SysNavigations = dataSet.Tables[2].ToList<Base_SysNavigation>().AsQueryable();
+                }
+                //dataSet[3] 按钮集合
+                if (dataSet.Tables[3] != null && data != null)
+                {
+                    data.Base_SysButtons = dataSet.Tables[3].ToList<Base_SysButton>().AsQueryable();
+                }
+            }
+            return data;
+
+        }
+        #endregion
 
         #endregion
 

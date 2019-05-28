@@ -102,6 +102,7 @@
         <member name="P:Coldairarrow.Entity.SecretDto.Token">
             <summary>
             登录后授权的 Token
+            刷新 Toekn 的时候使用
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_AppSecret">
@@ -646,7 +647,22 @@
         </member>
         <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.Base_UserRoleMaps">
             <summary>
+            用户与角色关系集合
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.Base_SysRoles">
+            <summary>
             角色集合
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.Base_SysNavigations">
+            <summary>
+            菜单集合
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.Base_SysButtons">
+            <summary>
+            按钮集合
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_UserRoleMap">

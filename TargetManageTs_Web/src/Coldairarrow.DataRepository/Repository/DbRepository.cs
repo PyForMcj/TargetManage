@@ -539,6 +539,78 @@ namespace Coldairarrow.DataRepository
         }
 
         /// <summary>
+        /// 通过Sql语句获取DataSet
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public DataSet GetDataSetWithSql(string sql)
+        {
+            DbProviderFactory dbProviderFactory = DbProviderFactoryHelper.GetDbProviderFactory(_dbType);
+            using (DbConnection conn = dbProviderFactory.CreateConnection())
+            {
+                conn.ConnectionString = _connectionString;
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                using (DbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = sql;
+
+                    DbDataAdapter adapter = dbProviderFactory.CreateDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataSet table = new DataSet();
+                    adapter.Fill(table);
+
+                    return table;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 通过Sql参数查询返回DataSet
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public DataSet GetDataSetWithSql(string sql, List<DbParameter> parameters)
+        {
+            DbProviderFactory dbProviderFactory = DbProviderFactoryHelper.GetDbProviderFactory(_dbType);
+            using (DbConnection conn = dbProviderFactory.CreateConnection())
+            {
+                conn.ConnectionString = _connectionString;
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                using (DbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = sql;
+
+                    if (parameters != null && parameters.Count > 0)
+                    {
+                        foreach (var item in parameters)
+                        {
+                            cmd.Parameters.Add(item);
+                        }
+                    }
+
+                    DbDataAdapter adapter = dbProviderFactory.CreateDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataSet table = new DataSet();
+                    adapter.Fill(table);
+                    cmd.Parameters.Clear();
+
+                    return table;
+                }
+            }
+        }
+
+        /// <summary>
         /// 通过sql返回List
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
