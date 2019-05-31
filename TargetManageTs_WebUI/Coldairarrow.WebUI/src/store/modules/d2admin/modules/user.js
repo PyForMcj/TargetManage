@@ -34,7 +34,7 @@ export default {
         // store 赋值
         state.info = await dispatch('d2admin/db/get', {
           dbName: 'sys',
-          path: 'user.info',
+          path: 'user.info.userinfo',
           defaultValue: {},
           user: true
         }, { root: true })

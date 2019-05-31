@@ -49,6 +49,16 @@ const frameIn = [
         },
         component: _import('demo/page3')
       },
+      //自定义页面
+      {
+        path: 'sysnavigation',
+        name: 'sysnavigation',
+        meta: {
+          title: '自定义',
+          auth: true
+        },
+        component: _import('manage/sysnavigation')
+      },
       // 系统 前端日志
       {
         path: 'log',

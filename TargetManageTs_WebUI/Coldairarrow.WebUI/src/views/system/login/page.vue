@@ -118,8 +118,8 @@ export default {
       ],
       // 表单
       formLogin: {
-        username: 'admin',
-        password: 'admin',
+        username: '',
+        password: '',
         code: 'v9am'
       },
       // 校验
@@ -146,7 +146,8 @@ export default {
   },
   methods: {
     ...mapActions('d2admin/account', [
-      'login'
+      'login',
+      'userinfo'
     ]),
     refreshTime () {
       this.time = dayjs().format('HH:mm:ss')
@@ -174,9 +175,12 @@ export default {
             username: this.formLogin.username,
             password: this.formLogin.password
           })
-            .then(() => {
-              // 重定向对象不存在则返回顶层路径
-              this.$router.replace(this.$route.query.redirect || '/')
+            .then((token) => {
+              this.userinfo( {token:token} )
+              .then(()=>{
+                // 重定向对象不存在则返回顶层路径
+                this.$router.replace(this.$route.query.redirect || '/')
+              })
             })
         } else {
           // 登录表单校验失败

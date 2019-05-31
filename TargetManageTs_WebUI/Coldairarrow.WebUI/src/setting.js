@@ -26,7 +26,7 @@ export default {
   },
   // 菜单搜索
   search: {
-    enable: true
+    enable: false
   },
   // 注册的主题
   theme: {

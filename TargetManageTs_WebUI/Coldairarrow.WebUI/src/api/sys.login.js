@@ -1,9 +1,22 @@
 import request from '@/plugin/axios'
 
-export function AccountLogin (data) {
-  return request({
-    url: '/login',
+function AccountLogin ( data ) {
+  return request ({
+    url: '/api/Base_Login/LoginSubmit',
     method: 'post',
-    data
+    data,
+    headers:{
+      'Content-Type':'application/json'
+    }
   })
 }
+function GetCurrentUserInfo ( data ) {
+  return request ({
+    url: '/api/Base_User/GetCurrentUserInfo?token=' + data.token,
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+export { AccountLogin, GetCurrentUserInfo }

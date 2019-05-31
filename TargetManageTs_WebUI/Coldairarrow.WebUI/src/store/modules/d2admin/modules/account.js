@@ -1,8 +1,7 @@
 import { Message, MessageBox } from 'element-ui'
 import util from '@/libs/util.js'
 import router from '@/router'
-import { AccountLogin } from '@api/sys.login'
-
+import { AccountLogin, GetCurrentUserInfo } from '@api/sys.login'
 export default {
   namespaced: true,
   actions: {
@@ -24,20 +23,53 @@ export default {
           password
         })
           .then(async res => {
+            if (!res.success) {
+              Message.error({ message: res.msg,showClose:true})
+              return
+            }
             // 设置 cookie 一定要存 uuid 和 token 两个 cookie
             // 整个系统依赖这两个数据进行校验和存储
             // uuid 是用户身份唯一标识 用户注册的时候确定 并且不可改变 不可重复
             // token 代表用户当前登录状态 建议在网络请求中携带 token
             // 如有必要 token 需要定时更新，默认保存一天
-            util.cookies.set('uuid', res.uuid)
-            util.cookies.set('token', res.token)
+            util.cookies.set('uuid', res.data.profile.userId)
+            util.cookies.set('token', res.data.access)
             // 设置 vuex 用户信息
             await dispatch('d2admin/user/set', {
-              name: res.name
+              name: res.data.profile.realName
             }, { root: true })
-            // 用户登录后从持久化数据加载一系列的设置
-            await dispatch('load')
             // 结束
+            resolve(res.data.access)
+          })
+          .catch(err => {
+            console.log('err: ', err)
+            reject(err)
+          })
+      })
+    },
+    /**
+     * @description 登录之后获取用户的权限信息
+     * @param {Object} param context
+     * @param {Object} param token {String} 根据token进行获取
+     */
+    userinfo ({ dispatch }, {
+      token = ''
+    } = {}) {
+      return new Promise((resolve, reject) => {
+        // 开始获取用户权限信息
+        GetCurrentUserInfo({
+          token
+        })
+          .then(async res => {
+            if (!res.success) {
+              Message.error(res.msg)
+              return
+            }
+            //ji
+            await dispatch('d2admin/user/set', {
+              userinfo: res.data
+            }, { root: true })
+            await dispatch('loadmenu')
             resolve()
           })
           .catch(err => {
@@ -109,6 +141,26 @@ export default {
         // end
         resolve()
       })
+    },
+    /**
+     * @description 加载用户菜单
+     * @param {Object} state vuex state
+     */
+    loadmenu({ commit, dispatch }) {
+      let menuAside = [
+        { path: '/index', title: '首页1', icon: 'home' },
+        {
+          title: '页面1',
+          icon: 'folder-o',
+          children: [
+            { path: '/page1', title: '页面 11' },
+            { path: '/page2', title: '页面 22' },
+            { path: '/page3', title: '页面 33' },
+            { path: '/sysnavigation', title: ' 自定义123' }
+          ]
+        }
+      ]
+      commit('d2admin/menu/asideSet', menuAside, { root:true } )
     }
   }
 }
