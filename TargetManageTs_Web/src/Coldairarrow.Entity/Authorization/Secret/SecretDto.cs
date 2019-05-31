@@ -12,7 +12,7 @@ namespace Coldairarrow.Entity
         /// <summary>
         /// 账号名
         /// </summary>
-        public string userName { get; set; }
+        public string username { get; set; }
 
         /// <summary>
         /// 密码

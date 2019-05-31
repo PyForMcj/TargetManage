@@ -54,12 +54,12 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         /// <param name="dto">授权用户信息</param>
         [HttpPost("LoginSubmit")]
         [AllowAnonymous]
-        [CheckParamNotEmpty("userName", "password")]
+        [CheckParamNotEmpty("username", "password")]
         [TypeFilter(typeof(UserOperationLogAttribute),Arguments = new object[] { "登录系统"})]
         public IActionResult LoginSubmit(SecretDto dto)
         {
             //Todo：获取用户信息
-            var user = _homeBus.JwtSubmitLogin(dto.userName, dto.password);
+            var user = _homeBus.JwtSubmitLogin(dto.username, dto.password);
 
             if (user == null)
                 return Ok(
@@ -73,7 +73,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                             Type = "Bearer",
                             Profile = new Profile
                             {
-                                UserName = dto.userName,
+                                UserName = dto.username,
                                 Auths = 0,
                                 Expires = 0
                             }
@@ -132,7 +132,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         public IActionResult RefreshAccessToken(SecretDto dto)
         {
             //Todo：获取用户信息
-            var user = _homeBus.JwtSubmitLogin(dto.userName, dto.password);
+            var user = _homeBus.JwtSubmitLogin(dto.username, dto.password);
 
             if (user == null)
                 return Ok(
@@ -146,7 +146,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                             Type = "Bearer",
                             Profile = new Profile
                             {
-                                UserName = dto.userName,
+                                UserName = dto.username,
                                 Auths = 0,
                                 Expires = 0
                             }

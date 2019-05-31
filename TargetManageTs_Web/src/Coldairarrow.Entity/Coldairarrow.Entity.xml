@@ -89,7 +89,7 @@
             用户登录实体
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.SecretDto.userName">
+        <member name="P:Coldairarrow.Entity.SecretDto.username">
             <summary>
             账号名
             </summary>
