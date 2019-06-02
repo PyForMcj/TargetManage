@@ -17,7 +17,7 @@ export default {
         // 持久化
         await dispatch('d2admin/db/set', {
           dbName: 'sys',
-          path: 'user.info',
+          // path: 'userinfo',
           value: info,
           user: true
         }, { root: true })
@@ -34,7 +34,7 @@ export default {
         // store 赋值
         state.info = await dispatch('d2admin/db/get', {
           dbName: 'sys',
-          path: 'user.info.userinfo',
+          // path: 'userinfo',
           defaultValue: {},
           user: true
         }, { root: true })

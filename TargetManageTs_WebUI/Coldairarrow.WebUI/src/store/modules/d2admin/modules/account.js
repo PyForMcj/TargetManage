@@ -24,7 +24,7 @@ export default {
         })
           .then(async res => {
             if (!res.success) {
-              Message.error({ message: res.msg,showClose:true})
+              Message.error({ message: res.msg, showClose: true })
               return
             }
             // 设置 cookie 一定要存 uuid 和 token 两个 cookie
@@ -34,10 +34,6 @@ export default {
             // 如有必要 token 需要定时更新，默认保存一天
             util.cookies.set('uuid', res.data.profile.userId)
             util.cookies.set('token', res.data.access)
-            // 设置 vuex 用户信息
-            await dispatch('d2admin/user/set', {
-              name: res.data.profile.realName
-            }, { root: true })
             // 结束
             resolve(res.data.access)
           })
@@ -65,10 +61,11 @@ export default {
               Message.error(res.msg)
               return
             }
-            //ji
+            // 设置用户信息到浏览器数据库
             await dispatch('d2admin/user/set', {
               userinfo: res.data
             }, { root: true })
+            // 加载后台传过来的权限菜单
             await dispatch('loadmenu')
             resolve()
           })
@@ -88,11 +85,11 @@ export default {
        * @description 注销
        */
       async function logout () {
+        // 清空 vuex 用户信息
+        await dispatch('d2admin/user/set', {}, { root: true })
         // 删除cookie
         util.cookies.remove('token')
         util.cookies.remove('uuid')
-        // 清空 vuex 用户信息
-        await dispatch('d2admin/user/set', {}, { root: true })
         // 跳转路由
         router.push({
           name: 'login'
@@ -146,7 +143,7 @@ export default {
      * @description 加载用户菜单
      * @param {Object} state vuex state
      */
-    loadmenu({ commit, dispatch }) {
+    loadmenu ({ commit, dispatch }) {
       let menuAside = [
         { path: '/index', title: '首页1', icon: 'home' },
         {
@@ -160,7 +157,7 @@ export default {
           ]
         }
       ]
-      commit('d2admin/menu/asideSet', menuAside, { root:true } )
+      commit('d2admin/menu/asideSet', menuAside, { root: true })
     }
   }
 }

@@ -43,7 +43,7 @@ export default {
         time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         meta: {
           // 当前用户信息
-          user: rootState.d2admin.user.info,
+          user: rootState.d2admin.user.info.userinfo,
           // 当前用户的 uuid
           uuid: util.cookies.get('uuid'),
           // 当前的 token

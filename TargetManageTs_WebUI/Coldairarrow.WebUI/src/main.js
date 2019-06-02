@@ -11,7 +11,7 @@ import i18n from './i18n'
 // 菜单和路由设置
 import router from './router'
 import menuHeader from '@/menu/header'
-import menuAside from '@/menu/aside'
+// import menuAside from '@/menu/aside'
 import { frameInRoutes } from '@/router/routes'
 
 // 核心插件
@@ -28,8 +28,8 @@ new Vue({
     // 设置顶栏菜单
     this.$store.commit('d2admin/menu/headerSet', menuHeader)
     // 设置侧边栏菜单
-    //this.$store.dispatch('d2admin/account/loadmenu')
-    //this.$store.commit('d2admin/menu/asideSet', menuAside)
+    this.$store.dispatch('d2admin/account/loadmenu')
+    // this.$store.commit('d2admin/menu/asideSet', menuAside)
     // 初始化菜单搜索功能
     this.$store.commit('d2admin/search/init', menuHeader)
   },

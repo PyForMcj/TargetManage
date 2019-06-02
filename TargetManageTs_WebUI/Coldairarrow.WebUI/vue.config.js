@@ -43,7 +43,8 @@ module.exports = {
       // 开发环境
       .when(process.env.NODE_ENV === 'development',
         // sourcemap不包含列信息
-        config => config.devtool('cheap-source-map')
+        // config => config.devtool('cheap-source-map')
+        config => config.devtool('eval-source-map')
       )
       // TRAVIS 构建 vue-loader 添加 filename
       .when(process.env.VUE_APP_BUILD_MODE === 'TRAVIS' || process.env.NODE_ENV === 'development',
