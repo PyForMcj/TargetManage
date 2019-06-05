@@ -16,16 +16,29 @@ namespace Coldairarrow.Business.Base_SysManage
         /// </summary>
         /// <param name="condition">查询类型</param>
         /// <param name="keyword">关键字</param>
+        /// <param name="id">id为空获取所有的数据，不为空获取所有parentId等于它的数据</param>
         /// <returns></returns>
-        public List<Base_SysNavigation> GetDataList(string condition, string keyword, Pagination pagination)
+        public List<Base_SysNavigation> GetDataList(string condition, string keyword, Pagination pagination, string id = "")
         {
             var q = GetIQueryable();
 
             //模糊查询
             if (!condition.IsNullOrEmpty() && !keyword.IsNullOrEmpty())
                 q = q.Where($@"{condition}.Contains(@0)", keyword);
-
+            if (!id.IsNullOrEmpty())
+                q = q.Where(c => c.ParentId.Equals(id));
             return q.GetPagination(pagination).ToList();
+        }
+
+        /// <summary>
+        /// 获取所有数据列表
+        /// </summary>
+        /// <returns></returns>
+        public List<Base_SysNavigationDto> GetMenuTrees()
+        {
+            var q= GetIQueryable().ToList();
+            var topNav = q.Where(c => string.IsNullOrEmpty(c.ParentId)).ToList();
+            return Base_UserBusiness.navigationDtos(q, topNav);
         }
 
         /// <summary>

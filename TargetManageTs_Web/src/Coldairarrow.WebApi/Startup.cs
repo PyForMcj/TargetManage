@@ -80,7 +80,7 @@ namespace Coldairarrow.WebApi
                     }
                 };
             });
-            
+
             #endregion
 
             #region 跨域配置
@@ -150,7 +150,12 @@ namespace Coldairarrow.WebApi
             services.AddMvc(options =>
             {
                 options.Filters.Add<GlobalExceptionFilter>();
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                options.Filters.Add<GlobalActionFilter>();
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;//设置忽略值为null的属性,解决d2Admin问题
+            });
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IJwtAppService, JwtAppService>(); //token处理

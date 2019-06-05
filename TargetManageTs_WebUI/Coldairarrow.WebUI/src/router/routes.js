@@ -49,12 +49,12 @@ const frameIn = [
         },
         component: _import('demo/page3')
       },
-      //自定义页面
+      // 自定义页面
       {
         path: 'sysnavigation',
         name: 'sysnavigation',
         meta: {
-          title: '自定义',
+          title: '菜单管理',
           auth: true
         },
         component: _import('manage/sysnavigation')

@@ -2,6 +2,7 @@ import { Message, MessageBox } from 'element-ui'
 import util from '@/libs/util.js'
 import router from '@/router'
 import { AccountLogin, GetCurrentUserInfo } from '@api/sys.login'
+import user from '@/store/modules/d2admin/modules/user.js'
 export default {
   namespaced: true,
   actions: {
@@ -144,20 +145,7 @@ export default {
      * @param {Object} state vuex state
      */
     loadmenu ({ commit, dispatch }) {
-      let menuAside = [
-        { path: '/index', title: '首页1', icon: 'home' },
-        {
-          title: '页面1',
-          icon: 'folder-o',
-          children: [
-            { path: '/page1', title: '页面 11' },
-            { path: '/page2', title: '页面 22' },
-            { path: '/page3', title: '页面 33' },
-            { path: '/sysnavigation', title: ' 自定义123' }
-          ]
-        }
-      ]
-      commit('d2admin/menu/asideSet', menuAside, { root: true })
+      commit('d2admin/menu/asideSet', user.state.info.userinfo.base_SysNavigations, { root: true })
     }
   }
 }

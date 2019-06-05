@@ -405,14 +405,19 @@
             NavName
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.IconCls">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.Icon">
             <summary>
-            IconCls
+            Icon
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.Link">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.IconSvg">
             <summary>
-            Link
+            IconSvg
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.Path">
+            <summary>
+            Path
             </summary>
         </member>
         <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.IsShow">
@@ -430,11 +435,6 @@
             Remarks
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.NavTag">
-            <summary>
-            NavTag
-            </summary>
-        </member>
         <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.CreateTime">
             <summary>
             CreateTime
@@ -448,6 +448,51 @@
         <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.CraeteUserName">
             <summary>
             CraeteUserName
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto">
+            <summary>
+            前段菜单树用
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.ParentId">
+            <summary>
+            ParentId
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Path">
+            <summary>
+            路由 path
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Title">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.IconSvg">
+            <summary>
+            SVG 菜单图标
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Label">
+            <summary>
+            Tree树名字
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Children">
+            <summary>
+            子菜单数据
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysRole">

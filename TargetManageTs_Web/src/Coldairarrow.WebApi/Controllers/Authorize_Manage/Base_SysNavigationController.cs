@@ -55,12 +55,13 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
         /// <param name="condition">查询类型</param>
         /// <param name="keyword">关键字</param>
         /// <param name="pagination">分页</param>
+        /// <param name="id">id为空获取所有的数据，不为空获取所有parentId等于它的数据</param>
         /// <returns></returns>
         [HttpPost("GetDataList")]
         [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "查询菜单" })]
-        public IActionResult GetDataList(string condition, string keyword, Pagination pagination)
+        public IActionResult GetDataList(string condition, string keyword, Pagination pagination, string id = "")
         {
-            var dataList = _base_SysNavigationBusiness.GetDataList(condition, keyword, pagination);
+            var dataList = _base_SysNavigationBusiness.GetDataList(condition, keyword, pagination, id);
 
             return Ok(new AjaxResult
             {
@@ -73,6 +74,26 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
 
         #endregion
 
+        #region 获取菜单树
+        /// <summary>
+        /// 获取菜单树
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetMenuTrees")]
+        [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "获取菜单树" })]
+        public IActionResult GetMenuTrees()
+        {
+            var dataList = _base_SysNavigationBusiness.GetMenuTrees();
+
+            return Ok(new AjaxResult
+            {
+                Success = true,
+                Msg = "",
+                Data = dataList,
+                ErrorCode = 0
+            });
+        }
+        #endregion
 
         #region 提交数据
 

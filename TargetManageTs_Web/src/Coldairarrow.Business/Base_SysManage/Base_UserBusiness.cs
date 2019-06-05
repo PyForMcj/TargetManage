@@ -250,21 +250,70 @@ INNER JOIN dbo.Base_UserRoleMap d ON c.RoleId=d.RoleId WHERE d.UserId=@userId;
                 //dataSet[1] 角色集合
                 if (dataSet.Tables[1] != null && data != null)
                 {
-                    data.Base_SysRoles = dataSet.Tables[1].ToList<Base_SysRole>().AsQueryable();
+                    data.Base_SysRoles = dataSet.Tables[1].ToList<Base_SysRole>();
                 }
                 //dataSet[2] 菜单集合
                 if (dataSet.Tables[2] != null && data != null)
                 {
-                    data.Base_SysNavigations = dataSet.Tables[2].ToList<Base_SysNavigation>().AsQueryable();
+                    var sysnavs = dataSet.Tables[2].ToList<Base_SysNavigation>();
+                    var topNav = sysnavs.Where(c => string.IsNullOrEmpty(c.ParentId)).ToList();
+                    data.Base_SysNavigations = Base_UserBusiness.navigationDtos(sysnavs, topNav);
                 }
                 //dataSet[3] 按钮集合
                 if (dataSet.Tables[3] != null && data != null)
                 {
-                    data.Base_SysButtons = dataSet.Tables[3].ToList<Base_SysButton>().AsQueryable();
+                    data.Base_SysButtons = dataSet.Tables[3].ToList<Base_SysButton>();
                 }
             }
             return data;
 
+        }
+
+        /// <summary>
+        /// 递归循环出一个菜单树
+        /// 无任何值获取，作为静态使用
+        /// </summary>
+        /// <param name="base_SysNavigationsAll">全部的数据</param>
+        /// <param name="base_SysNavigations">只包含顶级的数据</param>
+        /// <returns></returns>
+        public static List<Base_SysNavigationDto> navigationDtos(List<Base_SysNavigation> base_SysNavigationsAll, List<Base_SysNavigation> base_SysNavigations)
+        {
+            List<Base_SysNavigationDto> base_SysNavigationDto = new List<Base_SysNavigationDto>();
+            foreach (var item in base_SysNavigations)
+            {
+                //先判断这条数据有没有子级
+                var isHaveChilds = base_SysNavigationsAll.Where(c => c.ParentId == item.Id).ToList();
+                if (isHaveChilds.Count() > 0)
+                {
+                    Base_SysNavigationDto sysnav = new Base_SysNavigationDto
+                    {
+                        Id = item.Id,
+                        ParentId = item.ParentId,
+                        Path = item.Path,
+                        Title = item.NavName,
+                        Icon = item.Icon,
+                        IconSvg = item.IconSvg,
+                        Label=item.NavName
+                    };
+                    sysnav.Children = navigationDtos(base_SysNavigationsAll, isHaveChilds);
+                    base_SysNavigationDto.Add(sysnav);
+                }
+                else
+                {
+                    Base_SysNavigationDto sysnav = new Base_SysNavigationDto
+                    {
+                        Id = item.Id,
+                        ParentId = item.ParentId,
+                        Path = item.Path,
+                        Title = item.NavName,
+                        Icon = item.Icon,
+                        IconSvg = item.IconSvg,
+                        Label = item.NavName
+                    };
+                    base_SysNavigationDto.Add(sysnav);
+                }
+            }
+            return base_SysNavigationDto;
         }
         #endregion
 

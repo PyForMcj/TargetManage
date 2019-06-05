@@ -26,6 +26,12 @@
             测试菜单类
             </summary>
         </member>
+        <member name="T:Coldairarrow.WebApi.GlobalActionFilter">
+            <summary>
+            全局参数序列化
+            针对Webapi实体参数问题处理
+            </summary>
+        </member>
         <member name="T:Coldairarrow.WebApi.CheckParamNotEmptyAttribute">
             <summary>
             参数非空校验
@@ -298,13 +304,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.GetDataList(System.String,System.String,Coldairarrow.Util.Pagination)">
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.GetDataList(System.String,System.String,Coldairarrow.Util.Pagination,System.String)">
             <summary>
             获取数据列表
             </summary>
             <param name="condition">查询类型</param>
             <param name="keyword">关键字</param>
             <param name="pagination">分页</param>
+            <param name="id">id为空获取所有的数据，不为空获取所有parentId等于它的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.GetMenuTrees">
+            <summary>
+            获取菜单树
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Coldairarrow.WebApi.Controllers.Authorize_Manage.Base_SysNavigationController.SaveData(Coldairarrow.Entity.Base_SysManage.Base_SysNavigation)">

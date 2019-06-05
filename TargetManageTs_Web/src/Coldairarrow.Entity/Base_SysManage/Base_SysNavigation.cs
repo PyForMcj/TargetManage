@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,14 +29,19 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String NavName { get; set; }
 
         /// <summary>
-        /// IconCls
+        /// Icon
         /// </summary>
-        public String IconCls { get; set; }
+        public String Icon { get; set; }
 
         /// <summary>
-        /// Link
+        /// IconSvg
         /// </summary>
-        public String Link { get; set; }
+        public String IconSvg { get; set; }
+
+        /// <summary>
+        /// Path
+        /// </summary>
+        public String Path { get; set; }
 
         /// <summary>
         /// IsShow
@@ -53,11 +59,6 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String Remarks { get; set; }
 
         /// <summary>
-        /// NavTag
-        /// </summary>
-        public String NavTag { get; set; }
-
-        /// <summary>
         /// CreateTime
         /// </summary>
         public DateTime? CreateTime { get; set; }
@@ -72,5 +73,51 @@ namespace Coldairarrow.Entity.Base_SysManage
         /// </summary>
         public String CraeteUserName { get; set; }
 
+    }
+
+    /// <summary>
+    /// 前段菜单树用
+    /// </summary>
+    public class Base_SysNavigationDto
+    {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// ParentId
+        /// </summary>
+        public string ParentId { get; set; }
+
+        /// <summary>
+        /// 路由 path
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// 菜单名称
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// 菜单图标
+        /// </summary>
+        public string Icon { get; set; }
+
+        /// <summary>
+        /// SVG 菜单图标
+        /// </summary>
+        public string IconSvg { get; set; }
+
+        /// <summary>
+        /// Tree树名字
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
+        /// 子菜单数据
+        /// </summary>
+        public List<Base_SysNavigationDto> Children { get; set; }
     }
 }
