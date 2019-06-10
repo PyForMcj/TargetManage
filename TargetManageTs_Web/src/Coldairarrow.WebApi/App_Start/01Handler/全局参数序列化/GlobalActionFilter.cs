@@ -31,7 +31,22 @@ namespace Coldairarrow.WebApi
                     string key = aParamter.Name;
                     if (allParamters.ContainsKey(key))
                     {
-                        actionArguments[key] = allParamters[key]?.ToString()?.ChangeType(aParamter.ParameterType);
+                        //这个地方是为了分页单独处理，只针对分页返回数据的
+                        //其他的数据前台返回具体的实体字段
+                        //因为分页返回数据包含有其他关键字查询等，没有办法全部序列化
+                        if (aParamter.ParameterType.Name.Equals("Pagination"))
+                        {
+                            try
+                            {
+                                actionArguments[key] = allParamters[key].ToJson().ToObject(aParamter.ParameterType);
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                        else
+                            actionArguments[key] = allParamters[key]?.ToString()?.ChangeType(aParamter.ParameterType);
                     }
                     else
                     {

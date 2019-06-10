@@ -67,7 +67,7 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
             {
                 Success = true,
                 Msg = "",
-                Data = pagination.BuildTableResult_DataGrid(dataList).ToJson(),
+                Data = pagination.BuildTableResult_DataGrid(dataList),
                 ErrorCode = 0
             });
         }
@@ -83,13 +83,13 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
         [TypeFilter(typeof(UserOperationLogAttribute), Arguments = new object[] { "获取菜单树" })]
         public IActionResult GetMenuTrees()
         {
-            var dataList = _base_SysNavigationBusiness.GetMenuTrees();
+            var data = _base_SysNavigationBusiness.GetMenuTrees();
 
             return Ok(new AjaxResult
             {
                 Success = true,
                 Msg = "",
-                Data = dataList,
+                Data = data,
                 ErrorCode = 0
             });
         }

@@ -9,6 +9,8 @@ namespace Coldairarrow.Business.Base_SysManage
 {
     public class Base_SysNavigationBusiness : BaseBusiness<Base_SysNavigation>
     {
+        private const string topNavId = "00000-00000-00000-00000-00000";
+
         #region 外部接口
 
         /// <summary>
@@ -25,8 +27,10 @@ namespace Coldairarrow.Business.Base_SysManage
             //模糊查询
             if (!condition.IsNullOrEmpty() && !keyword.IsNullOrEmpty())
                 q = q.Where($@"{condition}.Contains(@0)", keyword);
-            if (!id.IsNullOrEmpty())
+            if (!id.IsNullOrEmpty() && !id.Equals(topNavId))
                 q = q.Where(c => c.ParentId.Equals(id));
+            if (!id.IsNullOrEmpty() && id.Equals(topNavId))
+                q = q.Where(c => c.ParentId.IsNullOrEmpty());
             return q.GetPagination(pagination).ToList();
         }
 
@@ -38,7 +42,16 @@ namespace Coldairarrow.Business.Base_SysManage
         {
             var q= GetIQueryable().ToList();
             var topNav = q.Where(c => string.IsNullOrEmpty(c.ParentId)).ToList();
-            return Base_UserBusiness.navigationDtos(q, topNav);
+            var treeNav = Base_UserBusiness.navigationDtos(q, topNav);
+            Base_SysNavigationDto sysnav = new Base_SysNavigationDto
+            {
+                Id = topNavId,
+                Label = "顶级菜单",
+                Children= treeNav
+            };
+            var listData = new List<Base_SysNavigationDto>();
+            listData.Add(sysnav);
+            return listData;
         }
 
         /// <summary>

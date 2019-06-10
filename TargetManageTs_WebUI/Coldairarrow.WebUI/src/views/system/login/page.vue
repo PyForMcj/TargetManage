@@ -118,8 +118,8 @@ export default {
       ],
       // 表单
       formLogin: {
-        username: '',
-        password: '',
+        username: 'admin',
+        password: '123456',
         code: 'v9am'
       },
       // 校验

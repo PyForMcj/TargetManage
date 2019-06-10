@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App'
 // 核心插件
 import d2Admin from '@/plugin/d2admin'
+import d2curd from '@d2-projects/d2-crud'
 // store
 import store from '@/store/index'
 // 多国语
@@ -13,8 +14,13 @@ import router from './router'
 import menuHeader from '@/menu/header'
 // import menuAside from '@/menu/aside'
 import { frameInRoutes } from '@/router/routes'
+// 时间格式化
+import Moment from 'moment'
+Vue.prototype.moment = Moment
+
 // 核心插件
 Vue.use(d2Admin)
+Vue.use(d2curd, { size: 'small' })
 
 new Vue({
   router,
