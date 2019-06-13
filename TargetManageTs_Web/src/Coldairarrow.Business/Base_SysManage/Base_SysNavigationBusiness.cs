@@ -45,9 +45,9 @@ namespace Coldairarrow.Business.Base_SysManage
             var treeNav = Base_UserBusiness.navigationDtos(q, topNav);
             Base_SysNavigationDto sysnav = new Base_SysNavigationDto
             {
-                Id = topNavId,
-                Label = "顶级菜单",
-                Children= treeNav
+                id = topNavId,
+                label = "顶级菜单",
+                children= treeNav
             };
             var listData = new List<Base_SysNavigationDto>();
             listData.Add(sysnav);
@@ -68,8 +68,14 @@ namespace Coldairarrow.Business.Base_SysManage
         /// 添加数据
         /// </summary>
         /// <param name="newData">数据</param>
-        public void AddData(Base_SysNavigation newData)
+        public void AddData(Base_SysNavigation newData, Base_User base_User)
         {
+            newData.Id = Guid.NewGuid().ToSequentialGuid();
+            if (newData.ParentId.Equals(topNavId))
+                newData.ParentId = string.Empty;
+            newData.CreateTime = DateTime.Now;
+            newData.CraeteUserId = base_User.UserId;
+            newData.CraeteUserName = base_User.UserName;
             Insert(newData);
         }
 

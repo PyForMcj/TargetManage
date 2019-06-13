@@ -34,7 +34,7 @@ namespace Coldairarrow.WebApi
                         //这个地方是为了分页单独处理，只针对分页返回数据的
                         //其他的数据前台返回具体的实体字段
                         //因为分页返回数据包含有其他关键字查询等，没有办法全部序列化
-                        if (aParamter.ParameterType.Name.Equals("Pagination"))
+                        if (aParamter.ParameterType.Namespace.Contains("Coldairarrow.Util") || aParamter.ParameterType.Namespace.Contains("Coldairarrow.Entity"))
                         {
                             try
                             {

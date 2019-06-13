@@ -16,12 +16,14 @@ import menuHeader from '@/menu/header'
 import { frameInRoutes } from '@/router/routes'
 // 时间格式化
 import Moment from 'moment'
+// inputTree
+import ElTreeSelect from 'el-tree-select'
 Vue.prototype.moment = Moment
 
 // 核心插件
 Vue.use(d2Admin)
 Vue.use(d2curd, { size: 'small' })
-
+Vue.use(ElTreeSelect)
 new Vue({
   router,
   store,
@@ -31,7 +33,8 @@ new Vue({
     // 处理路由 得到每一级的路由设置
     this.$store.commit('d2admin/page/init', frameInRoutes)
     // 设置顶栏菜单
-    this.$store.commit('d2admin/menu/headerSet', menuHeader)
+    // this.$store.commit('d2admin/menu/headerSet', menuHeader)
+    // 设置侧边栏菜单
     // this.$store.commit('d2admin/menu/asideSet', menuAside)
     // 初始化菜单搜索功能
     this.$store.commit('d2admin/search/init', menuHeader)

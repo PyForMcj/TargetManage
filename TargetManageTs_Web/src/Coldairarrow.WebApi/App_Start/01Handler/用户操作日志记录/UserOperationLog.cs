@@ -19,7 +19,8 @@ namespace Coldairarrow.WebApi
             string userName = null, ipAddress = HttpContextCore.Current.Connection.RemoteIpAddress.ToString();
             try
             {
-                userName = Base_UserBusiness.GetCurrentUser().UserName;
+                //userName = Base_UserBusiness.GetCurrentUser().UserName;
+                userName = CurrentUserHelper.GetCurrentUserInfo()?.UserName;
             }
             catch
             {

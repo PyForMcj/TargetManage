@@ -115,6 +115,13 @@
             忽略接口签名校验
             </summary>
         </member>
+        <member name="T:Coldairarrow.WebApi.CurrentUserHelper">
+            <summary>
+            这里暂时不存储在缓存中
+            在Chrome高版本中，发现Cookie无法被携带问题
+            导致无法定义缓存Key
+            </summary>
+        </member>
         <member name="T:Coldairarrow.WebApi.IUserOperationLog">
             <summary>
             用户操作日志记录

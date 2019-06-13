@@ -24,8 +24,8 @@ export default {
           password
         })
           .then(async res => {
-            if (!res.success) {
-              Message.error({ message: res.msg, showClose: true })
+            if (!res.Success) {
+              Message.error({ message: res.Msg, showClose: true })
               return
             }
             // 设置 cookie 一定要存 uuid 和 token 两个 cookie
@@ -33,10 +33,10 @@ export default {
             // uuid 是用户身份唯一标识 用户注册的时候确定 并且不可改变 不可重复
             // token 代表用户当前登录状态 建议在网络请求中携带 token
             // 如有必要 token 需要定时更新，默认保存一天
-            util.cookies.set('uuid', res.data.profile.userId)
-            util.cookies.set('token', res.data.access)
+            util.cookies.set('uuid', res.Data.Profile.UserId)
+            util.cookies.set('token', res.Data.Access)
             // 结束
-            resolve(res.data.access)
+            resolve(res.Data.Access)
           })
           .catch(err => {
             console.log('err: ', err)
@@ -58,13 +58,13 @@ export default {
           token
         })
           .then(async res => {
-            if (!res.success) {
-              Message.error(res.msg)
+            if (!res.Success) {
+              Message.error(res.Msg)
               return
             }
             // 设置用户信息到浏览器数据库
             await dispatch('d2admin/user/set', {
-              userinfo: res.data
+              userinfo: res.Data
             }, { root: true })
             // 加载后台传过来的权限菜单
             await dispatch('loadmenu')
@@ -145,7 +145,7 @@ export default {
      * @param {Object} state vuex state
      */
     loadmenu ({ commit, dispatch }) {
-      commit('d2admin/menu/asideSet', user.state.info.userinfo.base_SysNavigations, { root: true })
+      commit('d2admin/menu/asideSet', user.state.info.userinfo.Base_SysNavigations, { root: true })
     }
   }
 }

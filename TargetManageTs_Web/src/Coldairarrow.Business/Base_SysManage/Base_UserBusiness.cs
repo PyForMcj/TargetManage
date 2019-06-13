@@ -287,28 +287,28 @@ INNER JOIN dbo.Base_UserRoleMap d ON c.RoleId=d.RoleId WHERE d.UserId=@userId;
                 {
                     Base_SysNavigationDto sysnav = new Base_SysNavigationDto
                     {
-                        Id = item.Id,
-                        ParentId = item.ParentId,
-                        Path = item.Path,
-                        Title = item.NavName,
-                        Icon = item.Icon,
-                        IconSvg = item.IconSvg,
-                        Label=item.NavName
+                        id = item.Id,
+                        parentId = item.ParentId,
+                        path = item.Path,
+                        title = item.NavName,
+                        icon = item.Icon,
+                        iconSvg = item.IconSvg,
+                        label=item.NavName
                     };
-                    sysnav.Children = navigationDtos(base_SysNavigationsAll, isHaveChilds);
+                    sysnav.children = navigationDtos(base_SysNavigationsAll, isHaveChilds);
                     base_SysNavigationDto.Add(sysnav);
                 }
                 else
                 {
                     Base_SysNavigationDto sysnav = new Base_SysNavigationDto
                     {
-                        Id = item.Id,
-                        ParentId = item.ParentId,
-                        Path = item.Path,
-                        Title = item.NavName,
-                        Icon = item.Icon,
-                        IconSvg = item.IconSvg,
-                        Label = item.NavName
+                        id = item.Id,
+                        parentId = item.ParentId,
+                        path = item.Path,
+                        title = item.NavName,
+                        icon = item.Icon,
+                        iconSvg = item.IconSvg,
+                        label = item.NavName
                     };
                     base_SysNavigationDto.Add(sysnav);
                 }

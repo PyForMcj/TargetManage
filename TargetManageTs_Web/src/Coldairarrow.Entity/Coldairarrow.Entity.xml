@@ -455,42 +455,42 @@
             前段菜单树用
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Id">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.ParentId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.parentId">
             <summary>
             ParentId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Path">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.path">
             <summary>
             路由 path
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Title">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.title">
             <summary>
             菜单名称
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Icon">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.icon">
             <summary>
             菜单图标
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.IconSvg">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.iconSvg">
             <summary>
             SVG 菜单图标
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Label">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.label">
             <summary>
             Tree树名字
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.Children">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto.children">
             <summary>
             子菜单数据
             </summary>

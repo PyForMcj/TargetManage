@@ -83,41 +83,41 @@ namespace Coldairarrow.Entity.Base_SysManage
         /// <summary>
         /// Id
         /// </summary>
-        public string Id { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// ParentId
         /// </summary>
-        public string ParentId { get; set; }
+        public string parentId { get; set; }
 
         /// <summary>
         /// 路由 path
         /// </summary>
-        public string Path { get; set; }
+        public string path { get; set; }
 
         /// <summary>
         /// 菜单名称
         /// </summary>
-        public string Title { get; set; }
+        public string title { get; set; }
 
         /// <summary>
         /// 菜单图标
         /// </summary>
-        public string Icon { get; set; }
+        public string icon { get; set; }
 
         /// <summary>
         /// SVG 菜单图标
         /// </summary>
-        public string IconSvg { get; set; }
+        public string iconSvg { get; set; }
 
         /// <summary>
         /// Tree树名字
         /// </summary>
-        public string Label { get; set; }
+        public string label { get; set; }
 
         /// <summary>
         /// 子菜单数据
         /// </summary>
-        public List<Base_SysNavigationDto> Children { get; set; }
+        public List<Base_SysNavigationDto> children { get; set; }
     }
 }

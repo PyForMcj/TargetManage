@@ -25,4 +25,19 @@ function GetMenus (data) {
     }
   })
 }
-export { GetMenuTrees, GetMenus }
+
+/**
+ * 获取菜单集合
+ */
+function addMenu (data) {
+  debugger
+  return request({
+    url: '/api/Base_SysNavigation/SaveData',
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+export { GetMenuTrees, GetMenus, addMenu }

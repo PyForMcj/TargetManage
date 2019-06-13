@@ -44,7 +44,7 @@ service.interceptors.request.use(
   config => {
     // 在请求发送之前做一些处理
     const token = util.cookies.get('token')
-    // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+    // 添加token
     config.headers['Authorization'] = 'Bearer ' + token
     return config
   },
@@ -72,7 +72,7 @@ service.interceptors.response.use(
         case 0:
           // [ 示例 ] code === 0 代表没有错误
           return dataAxios.data
-        case 'xxx':
+        case '401':
           // [ 示例 ] 其它和后台约定的 code
           errorCreate(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`)
           break

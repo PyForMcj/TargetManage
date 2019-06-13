@@ -9,6 +9,7 @@ using Coldairarrow.Entity;
 using Coldairarrow.Business.Base_SysManage;
 using Coldairarrow.Util;
 using Coldairarrow.Entity.Base_SysManage;
+using Coldairarrow.WebApi;
 
 namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
 {
@@ -108,9 +109,8 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
             string msg = string.Empty;
             if (theData.Id.IsNullOrEmpty())
             {
-                theData.Id = Guid.NewGuid().ToSequentialGuid();
-
-                _base_SysNavigationBusiness.AddData(theData);
+                Base_User base_User = CurrentUserHelper.GetCurrentUserInfo();
+                _base_SysNavigationBusiness.AddData(theData, base_User);
                 msg = "添加成功！";
             }
             else
