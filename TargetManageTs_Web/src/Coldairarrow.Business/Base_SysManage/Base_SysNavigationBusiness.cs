@@ -40,7 +40,7 @@ namespace Coldairarrow.Business.Base_SysManage
         /// <returns></returns>
         public List<Base_SysNavigationDto> GetMenuTrees()
         {
-            var q= GetIQueryable().ToList();
+            var q= GetIQueryable().OrderBy(c=>c.SortNum).ToList();
             var topNav = q.Where(c => string.IsNullOrEmpty(c.ParentId)).ToList();
             var treeNav = Base_UserBusiness.navigationDtos(q, topNav);
             Base_SysNavigationDto sysnav = new Base_SysNavigationDto
@@ -71,8 +71,7 @@ namespace Coldairarrow.Business.Base_SysManage
         public void AddData(Base_SysNavigation newData, Base_User base_User)
         {
             newData.Id = Guid.NewGuid().ToSequentialGuid();
-            if (newData.ParentId.Equals(topNavId))
-                newData.ParentId = string.Empty;
+            newData.ParentId = newData.ParentId.Equals(topNavId) ? string.Empty : newData.ParentId;
             newData.CreateTime = DateTime.Now;
             newData.CraeteUserId = base_User.UserId;
             newData.CraeteUserName = base_User.UserName;
@@ -84,6 +83,7 @@ namespace Coldairarrow.Business.Base_SysManage
         /// </summary>
         public void UpdateData(Base_SysNavigation theData)
         {
+            theData.ParentId = theData.ParentId.Equals(topNavId) ? string.Empty : theData.ParentId;
             Update(theData);
         }
 

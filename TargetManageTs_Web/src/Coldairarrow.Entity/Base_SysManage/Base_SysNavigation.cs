@@ -44,9 +44,10 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String Path { get; set; }
 
         /// <summary>
-        /// IsShow
+        /// 是否显示
+        /// true 显示 false 隐藏
         /// </summary>
-        public Int32? IsShow { get; set; }
+        public Boolean IsShow { get; set; }
 
         /// <summary>
         /// SortNum

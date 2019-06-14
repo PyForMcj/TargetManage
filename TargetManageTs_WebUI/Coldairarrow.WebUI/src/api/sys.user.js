@@ -1,23 +1,11 @@
 import request from '@/plugin/axios'
 
 /**
- * 获取菜单树
- */
-function GetMenuTrees () {
-  return request({
-    url: '/api/Base_SysNavigation/GetMenuTrees',
-    method: 'get',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-}
-/**
  * 获取菜单集合
  */
-function GetMenus (data) {
+function GetUsers (data) {
   return request({
-    url: '/api/Base_SysNavigation/GetDataList',
+    url: '/api/Base_User/GetDataList',
     method: 'post',
     data,
     headers: {
@@ -29,9 +17,9 @@ function GetMenus (data) {
 /**
  * 新增菜单
  */
-function addMenu (data) {
+function addUser (data) {
   return request({
-    url: '/api/Base_SysNavigation/SaveData',
+    url: '/api/Base_User/SaveData',
     method: 'post',
     data,
     headers: {
@@ -43,9 +31,9 @@ function addMenu (data) {
 /**
  * 编辑菜单
  */
-function updateMenu (data) {
+function updateUser (data) {
   return request({
-    url: '/api/Base_SysNavigation/SaveData',
+    url: '/api/Base_User/SaveData',
     method: 'post',
     data,
     headers: {
@@ -57,9 +45,9 @@ function updateMenu (data) {
 /**
  * 删除菜单
  */
-function deleteMenu (data) {
+function deleteUser (data) {
   return request({
-    url: '/api/Base_SysNavigation/DeleteData?ids=' + data.ids,
+    url: '/api/Base_User/DeleteData?ids=' + data.ids,
     method: 'get',
     headers: {
       'Content-Type': 'application/json'
@@ -67,4 +55,4 @@ function deleteMenu (data) {
   })
 }
 
-export { GetMenuTrees, GetMenus, addMenu, updateMenu, deleteMenu }
+export { GetUsers, addUser, updateUser, deleteUser }

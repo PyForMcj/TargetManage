@@ -25,7 +25,7 @@ namespace Coldairarrow.WebApi
             Base_User base_User = new Base_User
             {
                 UserId = userInfoDic["UserId"]?.ToString(),
-                UserName= userInfoDic["unique_name"]?.ToString(),
+                UserName= userInfoDic["RealName"]?.ToString(),
             };
             return base_User;
         }

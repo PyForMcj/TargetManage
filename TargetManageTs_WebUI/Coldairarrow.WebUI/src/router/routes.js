@@ -59,6 +59,15 @@ const frameIn = [
         },
         component: _import('manage/sysnavigation')
       },
+      {
+        path: 'sysuser',
+        name: 'sysuser',
+        meta: {
+          title: '用户管理',
+          auth: true
+        },
+        component: _import('manage/sysuser')
+      },
       // 系统 前端日志
       {
         path: 'log',

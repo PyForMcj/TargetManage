@@ -50,6 +50,7 @@ namespace Coldairarrow.WebApi
             IEnumerable<Claim> claims = new Claim[] {
                 new Claim(ClaimTypes.Name,dto.UserName),
                 new Claim("UserId",dto.UserId),
+                new Claim("RealName",dto.RealName),
                 new Claim(ClaimTypes.Role,string.Join(",",dto.Base_UserRoleMaps.Select(c=>c.RoleId).ToList())),
                 new Claim(ClaimTypes.Email,dto.Email),
                 new Claim(ClaimTypes.Expiration,expiresAt.ToString())

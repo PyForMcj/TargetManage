@@ -256,6 +256,7 @@ INNER JOIN dbo.Base_UserRoleMap d ON c.RoleId=d.RoleId WHERE d.UserId=@userId;
                 if (dataSet.Tables[2] != null && data != null)
                 {
                     var sysnavs = dataSet.Tables[2].ToList<Base_SysNavigation>();
+                    sysnavs = sysnavs.OrderBy(c => c.SortNum).ToList();
                     var topNav = sysnavs.Where(c => string.IsNullOrEmpty(c.ParentId)).ToList();
                     data.Base_SysNavigations = Base_UserBusiness.navigationDtos(sysnavs, topNav);
                 }

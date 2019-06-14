@@ -66,7 +66,7 @@ namespace Coldairarrow.WebApi.Controllers.Authorize_Manage
             {
                 Success = true,
                 Msg = "",
-                Data = pagination.BuildTableResult_DataGrid(dataList).ToJson(),
+                Data = pagination.BuildTableResult_DataGrid(dataList),
                 ErrorCode = 0
             });
         }

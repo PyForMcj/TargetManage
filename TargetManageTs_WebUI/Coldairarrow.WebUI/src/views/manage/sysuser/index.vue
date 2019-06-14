@@ -11,13 +11,13 @@
           style="margin-bottom: -18px;"
         >
           <el-form-item label="关键字：" prop="seachKeyword">
-            <el-input v-model="seachForm.seachKeyword" placeholder="请输入菜单名称" style="width: 120px;"/>
+            <el-input v-model="seachForm.seachKeyword" placeholder="请输入用户名称" style="width: 120px;"/>
           </el-form-item>
-          <el-form-item label="状态：" prop="seachIsShow">
-            <el-select v-model="seachForm.seachIsShow" style="width: 100px;">
+          <el-form-item label="状态：" prop="seachIsEnabled">
+            <el-select v-model="seachForm.seachIsEnabled" style="width: 100px;">
               <el-option label="请选择" value/>
-              <el-option label="显示" value="1"/>
-              <el-option label="隐藏" value="0"/>
+              <el-option label="启用" value="1"/>
+              <el-option label="停用" value="0"/>
             </el-select>
           </el-form-item>
           <el-form-item>
@@ -38,22 +38,15 @@
         </el-form>
       </template>
       <el-container>
-        <el-aside width="200px">
-          <el-tree
-            :data="treeData"
-            :props="treeProps"
-            @node-click="treeNodeClick"
-            :expand-on-click-node="false"
-          ></el-tree>
-        </el-aside>
         <el-main>
           <template>
             <el-table :data="tableData" style="width: 100%">
-              <el-table-column prop="NavName" label="菜单名称" width="180"></el-table-column>
-              <el-table-column prop="Icon" label="图标" width="120"></el-table-column>
-              <el-table-column prop="Path" label="路径" width="120"></el-table-column>
+              <el-table-column prop="UserName" label="用户名" width="180"></el-table-column>
+              <el-table-column prop="RealName" label="真实姓名" width="120"></el-table-column>
+              <el-table-column prop="Sex" label="性别" width="120" :formatter="table_SexFormatter"></el-table-column>
+              <el-table-column prop="Phone" label="电话" width="120"></el-table-column>
               <el-table-column
-                prop="IsShow"
+                prop="IsEnabled"
                 label="状态"
                 width="80"
                 :formatter="table_StatusFormatter"
@@ -91,69 +84,47 @@
     <template>
       <el-dialog
         @closed="dialogFormClosed"
-        title="新增菜单"
+        title="新增用户"
         :show-close="true"
         :visible.sync="dialogFormVisibleAdd"
-        top="10vh"
+        width="35%"
+        top="5vh"
       >
         <el-form :model="dialogForm" label-width="120px" size="small" ref="dialogForm">
-          <el-form-item label="上级菜单：" prop="ParentId">
-            <el-tree-select
-              v-model="dialogForm.ParentId"
-              :styles="elTreeSelectStyle"
-              :selectParams="elTreeSelectParams"
-              :treeParams="elTreeParams"
-              @node-click="_nodeClickFun"
-              ref="treeSelect"
-            />
+          <el-form-item label="用户名：" prop="UserName">
+            <el-input v-model="dialogForm.UserName" style="width:250px;" clearable></el-input>
           </el-form-item>
-          <el-form-item label="菜单名称：" prop="NavName">
-            <el-input v-model="dialogForm.NavName" style="width:250px;" clearable></el-input>
-          </el-form-item>
-          <el-form-item label="路径：" prop="Path">
-            <el-input v-model="dialogForm.Path" style="width:250px;" clearable></el-input>
-          </el-form-item>
-          <el-form-item label="图标：" prop="Icon">
-            <d2-icon-select v-model="dialogForm.Icon"/>
-          </el-form-item>
-          <!-- <el-row>
-          <el-col :span="10">
-          <el-form-item label="图标：" prop="Icon">
-            <d2-icon-select v-model="dialogForm.Icon"/>
-          </el-form-item>
-          </el-col>
-          <el-col :span="10">
-          <el-form-item label="Svg图标：" prop="IconSvg">
-            <el-input v-model="dialogForm.IconSvg"></el-input>
-          </el-form-item>
-          </el-col>
-          </el-row>-->
-          <el-row>
-            <el-col :span="10">
-              <el-form-item label="状态：" prop="IsShow">
-                <el-switch v-model="dialogForm.IsShow" active-text="显示" inactive-text="隐藏"></el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="10">
-              <el-form-item label="排序：" prop="SortNum">
-                <el-input-number
-                  v-model="dialogForm.SortNum"
-                  controls-position="right"
-                  :min="0"
-                  :max="100"
-                ></el-input-number>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-form-item label="备注：" prop="Remarks">
+          <el-form-item label="密码：" prop="Password">
             <el-input
-              v-model="dialogForm.Remarks"
-              type="textarea"
-              maxlength="300"
-              show-word-limit
-              :rows="3"
-              clearable
+              v-model="dialogForm.Password"
+              style="width:250px;"
+              placeholder="请输入密码"
+              show-password
             ></el-input>
+          </el-form-item>
+          <el-form-item label="真实姓名：" prop="RealName">
+            <el-input v-model="dialogForm.RealName" style="width:250px;" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="性别：" prop="Sex">
+            <el-radio v-model="dialogForm.Sex" :label="1">男</el-radio>
+            <el-radio v-model="dialogForm.Sex" :label="0">女</el-radio>
+          </el-form-item>
+          <el-form-item label="出生日期：" prop="Birthday">
+            <el-date-picker
+              v-model="dialogForm.Birthday"
+              type="date"
+              placeholder="选择日期"
+              style="width:250px;"
+            ></el-date-picker>
+          </el-form-item>
+          <el-form-item label="邮件：" prop="Email">
+            <el-input v-model="dialogForm.Email" style="width:250px;" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="电话：" prop="Phone">
+            <el-input v-model="dialogForm.Phone" style="width:250px;" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="状态：" prop="IsEnabled">
+            <el-switch v-model="dialogForm.IsEnabled" active-text="启用" inactive-text="停用"></el-switch>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -165,69 +136,47 @@
     <template>
       <el-dialog
         @closed="dialogFormClosed"
-        title="编辑菜单"
+        title="编辑用户"
         :show-close="true"
         :visible.sync="dialogFormVisibleUpdate"
-        top="10vh"
+        width="35%"
+        top="5vh"
       >
         <el-form :model="dialogForm" label-width="120px" size="small" ref="dialogForm">
-          <el-form-item label="上级菜单：" prop="ParentId">
-            <el-tree-select
-              v-model="dialogForm.ParentId"
-              :styles="elTreeSelectStyle"
-              :selectParams="elTreeSelectParams"
-              :treeParams="elTreeParams"
-              @node-click="_nodeClickFun"
-              ref="treeSelect"
-            />
+          <el-form-item label="用户名：" prop="UserName">
+            <el-input v-model="dialogForm.UserName" style="width:250px;" clearable></el-input>
           </el-form-item>
-          <el-form-item label="菜单名称：" prop="NavName">
-            <el-input v-model="dialogForm.NavName" style="width:250px;" clearable></el-input>
-          </el-form-item>
-          <el-form-item label="路径：" prop="Path">
-            <el-input v-model="dialogForm.Path" style="width:250px;" clearable></el-input>
-          </el-form-item>
-          <el-form-item label="图标：" prop="Icon">
-            <d2-icon-select v-model="dialogForm.Icon"/>
-          </el-form-item>
-          <!-- <el-row>
-          <el-col :span="10">
-          <el-form-item label="图标：" prop="Icon">
-            <d2-icon-select v-model="dialogForm.Icon"/>
-          </el-form-item>
-          </el-col>
-          <el-col :span="10">
-          <el-form-item label="Svg图标：" prop="IconSvg">
-            <el-input v-model="dialogForm.IconSvg"></el-input>
-          </el-form-item>
-          </el-col>
-          </el-row>-->
-          <el-row>
-            <el-col :span="10">
-              <el-form-item label="状态：" prop="IsShow">
-                <el-switch v-model="dialogForm.IsShow" active-text="显示" inactive-text="隐藏"></el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="10">
-              <el-form-item label="排序：" prop="SortNum">
-                <el-input-number
-                  v-model="dialogForm.SortNum"
-                  controls-position="right"
-                  :min="0"
-                  :max="100"
-                ></el-input-number>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-form-item label="备注：" prop="Remarks">
+          <el-form-item label="密码：" prop="Password">
             <el-input
-              v-model="dialogForm.Remarks"
-              type="textarea"
-              maxlength="300"
-              show-word-limit
-              :rows="3"
-              clearable
+              v-model="dialogForm.Password"
+              style="width:250px;"
+              placeholder="请输入密码"
+              show-password
             ></el-input>
+          </el-form-item>
+          <el-form-item label="真实姓名：" prop="RealName">
+            <el-input v-model="dialogForm.RealName" style="width:250px;" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="性别：" prop="Sex">
+            <el-radio v-model="dialogForm.Sex" :label="1">男</el-radio>
+            <el-radio v-model="dialogForm.Sex" :label="0">女</el-radio>
+          </el-form-item>
+          <el-form-item label="出生日期：" prop="Birthday">
+            <el-date-picker
+              v-model="dialogForm.Birthday"
+              type="date"
+              placeholder="选择日期"
+              style="width:250px;"
+            ></el-date-picker>
+          </el-form-item>
+          <el-form-item label="邮件：" prop="Email">
+            <el-input v-model="dialogForm.Email" style="width:250px;" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="电话：" prop="Phone">
+            <el-input v-model="dialogForm.Phone" style="width:250px;" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="状态：" prop="IsEnabled">
+            <el-switch v-model="dialogForm.IsEnabled" active-text="启用" inactive-text="停用"></el-switch>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -240,31 +189,19 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import {
-  GetMenuTrees,
-  GetMenus,
-  addMenu,
-  updateMenu,
-  deleteMenu
-} from "@api/sys.navigation";
+import { GetUsers, addUser, updateUser, deleteUser } from "@api/sys.user";
 import _ from "lodash";
 
 export default {
   data() {
     return {
-      treeSelectNodeId: "", // 选中的菜单Id
-      treeData: [], // 菜单tree数据
-      treeProps: {
-        children: "children",
-        label: "label"
-      },
       seachForm: {
-        seachIsShow: "",
+        seachIsEnabled: "",
         seachKeyword: ""
       }, // 筛选条件
       seachRules: {
         seachKeyword: [{ required: true, message: " ", trigger: "change" }]
-        // seachIsShow: [ { required: true, message: '请选择状态', trigger: 'change' } ]
+        // seachIsEnabled: [ { required: true, message: '请选择状态', trigger: 'change' } ]
       }, // 筛选条件验证
       tableData: [],
       tableloading: false,
@@ -272,48 +209,26 @@ export default {
         page: 1, // 表格当前页
         rows: 5, // 表格每页行数
         records: 0, // 总数
-        SortField: "SortNum",// 排序字段
-        SortType: "Asc",// 排序规则
+        SortField: "CreateTime", // 排序字段
+        SortType: "Asc" // 排序规则
       }, // 后台分页序列化
       dialogForm: {
         Id: "",
-        ParentId: "",
-        NavName: "",
-        Path: "",
-        Icon: "",
-        IconSvg: "",
-        IsShow: true,
-        SortNum: "",
-        Remarks: "",
+        UserId: "",
+        UserName: "",
+        Password: "",
+        RealName: "",
+        Sex: 1,
+        Birthday: "",
+        Email: "",
+        Phone: "",
+        IsEnabled: true,
         CraeteUserId: "",
         CraeteUserName: "",
         CreateTime: ""
       },
       dialogFormVisibleAdd: false,
-      dialogFormVisibleUpdate: false,
-      elTreeSelectStyle: {
-        width: "250px"
-      }, // inputTree宽度
-      elTreeSelectParams: {
-        multiple: false, // 是否多选
-        clearable: true, // 是否启用清空
-        placeholder: "请选择" // 提示信息
-      }, // inputTree配置信息
-      elTreeParams: {
-        clickParent: true, // 在有子级的情况下是否点击父级关闭弹出框,false 只能点击子级关闭弹出框
-        filterable: false, // 是否显示搜索框
-        "check-strictly": true,
-        "default-expand-all": false, // 默认是否展开
-        "expand-on-click-node": false, // true点击节点名称展开，false点击三角展开
-        "render-content": this._renderFun, // 自定义下拉框内容显示样式
-        data: [], // 下拉树的数据
-        props: {
-          children: "children",
-          label: "label",
-          disabled: "disabled",
-          value: "id"
-        }
-      }
+      dialogFormVisibleUpdate: false
     };
   },
   computed: {
@@ -326,21 +241,10 @@ export default {
     },
     // 禁用状态格式化
     table_StatusFormatter(row, column) {
-      return row.IsShow? "显示" : "隐藏";
+      return row.IsEnabled ? "启用" : "停用";
     },
-    treeNodeClick(data) {
-      this.treeSelectNodeId = data.id;
-      this.tableDataQuery();
-    },
-    GetMenuTreesSelf() {
-      var $this = this;
-      GetMenuTrees()
-        .then(res => {
-          $this.treeData = res.Data;
-        })
-        .catch(err => {
-          console.log("err: ", err);
-        });
+    table_SexFormatter(row, column) {
+      return row.Sex == 1 ? "男" : "女";
     },
     seachFormSubmit() {
       this.$refs.form.validate(valid => {
@@ -370,14 +274,14 @@ export default {
     tableDataQuery() {
       let $this = this;
       this.tableloading = true;
-      let [condition, keyword, pagination, id] = [
-        this.seachForm.seachIsShow,
+      let [condition, keyword, pagination] = [
+        this.seachForm.seachIsEnabled,
         this.seachForm.seachKeyword,
-        this.tableWebpagination,
-        this.treeSelectNodeId
+        this.tableWebpagination
       ];
-      GetMenus({ condition, keyword, pagination, id })
+      GetUsers({ condition, keyword, pagination })
         .then(res => {
+          debugger;
           $this.tableData = res.Data.rows;
           $this.tableWebpagination.records = res.Data.records;
           $this.tableloading = false;
@@ -386,18 +290,6 @@ export default {
           console.log("err", err);
           this.tableloading = false;
         });
-    },
-    // inputTree点击事件
-    _nodeClickFun(data, node, vm) {
-      //console.log('this _nodeClickFun', this.values, data, node);
-    },
-    // inputTree自定义下拉展示
-    _renderFun(h, { node, data, store }) {
-      return (
-        <span class="custom-tree-node">
-          <span>{node.label}</span>
-        </span>
-      );
     },
     dialogForm_Add() {
       this.dialogFormVisibleAdd = true;
@@ -408,7 +300,6 @@ export default {
         .then(res => {
           if (res.Success) {
             this.tableloading = true;
-            this.GetMenuTreesSelf();
             this.tableData = [];
             this.tableWebpagination.records = 0;
             this.tableloading = false;
@@ -427,9 +318,6 @@ export default {
     },
     dialogForm_Update(index, row) {
       this.dialogFormVisibleUpdate = true;
-      row.ParentId = row.ParentId
-        ? row.ParentId
-        : "00000-00000-00000-00000-00000";
       this.dialogForm = _.cloneDeep(row);
     },
     dialogForm_Save_Update() {
@@ -438,7 +326,6 @@ export default {
         .then(res => {
           if (res.Success) {
             this.tableloading = true;
-            this.GetMenuTreesSelf();
             this.tableData = [];
             this.tableWebpagination.records = 0;
             this.tableloading = false;
@@ -467,7 +354,6 @@ export default {
             .then(res => {
               if (res.Success) {
                 this.tableloading = true;
-                this.GetMenuTreesSelf();
                 this.tableData = [];
                 this.tableWebpagination.records = 0;
                 this.tableloading = false;
@@ -483,7 +369,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消！", 
+            message: "已取消！",
             showClose: true
           });
         });
@@ -493,13 +379,8 @@ export default {
       Object.assign(this.$data.dialogForm, this.$options.data().dialogForm);
     }
   },
-  watch: {
-    treeData: function(newQuestion, oldQuestion) {
-      this.elTreeParams.data = newQuestion;
-    }
-  },
   created: function() {
-    this.GetMenuTreesSelf();
+    this.tableDataQuery();
   }
 };
 </script>

@@ -61,6 +61,27 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String Phone { get; set; }
 
         /// <summary>
+        /// 是否启用
+        /// true 启用 false 停用
+        /// </summary>
+        public Boolean IsEnabled { get; set; }
+
+        /// <summary>
+        /// CreateTime
+        /// </summary>
+        public DateTime? CreateTime { get; set; }
+
+        /// <summary>
+        /// CraeteUserId
+        /// </summary>
+        public String CraeteUserId { get; set; }
+
+        /// <summary>
+        /// CraeteUserName
+        /// </summary>
+        public String CraeteUserName { get; set; }
+
+        /// <summary>
         /// 用户与角色关系集合
         /// </summary>
         [NotMapped]
