@@ -7,9 +7,9 @@ using System;
 namespace Coldairarrow.Web
 {
     [Area("Base_SysManage")]
-    public class Base_SysNavigationController : BaseMvcController
+    public class Base_OrganizationController : BaseMvcController
     {
-        Base_SysNavigationBusiness _base_SysNavigationBusiness = new Base_SysNavigationBusiness();
+        Base_OrganizationBusiness _base_OrganizationBusiness = new Base_OrganizationBusiness();
 
         #region 视图功能
 
@@ -20,7 +20,7 @@ namespace Coldairarrow.Web
 
         public ActionResult Form(string id)
         {
-            var theData = id.IsNullOrEmpty() ? new Base_SysNavigation() : _base_SysNavigationBusiness.GetTheData(id);
+            var theData = id.IsNullOrEmpty() ? new Base_Organization() : _base_OrganizationBusiness.GetTheData(id);
 
             return View(theData);
         }
@@ -37,7 +37,7 @@ namespace Coldairarrow.Web
         /// <returns></returns>
         public ActionResult GetDataList(string condition, string keyword, Pagination pagination)
         {
-            var dataList = _base_SysNavigationBusiness.GetDataList(condition, keyword, pagination);
+            var dataList = _base_OrganizationBusiness.GetDataList(condition, keyword, pagination);
 
             return Content(pagination.BuildTableResult_DataGrid(dataList).ToJson());
         }
@@ -50,17 +50,17 @@ namespace Coldairarrow.Web
         /// 保存
         /// </summary>
         /// <param name="theData">保存的数据</param>
-        public ActionResult SaveData(Base_SysNavigation theData)
+        public ActionResult SaveData(Base_Organization theData)
         {
             if(theData.Id.IsNullOrEmpty())
             {
                 theData.Id = Guid.NewGuid().ToSequentialGuid();
 
-                _base_SysNavigationBusiness.AddData(theData,null);
+                _base_OrganizationBusiness.AddData(theData);
             }
             else
             {
-                _base_SysNavigationBusiness.UpdateData(theData);
+                _base_OrganizationBusiness.UpdateData(theData);
             }
 
             return Success();
@@ -72,7 +72,7 @@ namespace Coldairarrow.Web
         /// <param name="theData">删除的数据</param>
         public ActionResult DeleteData(string ids)
         {
-            _base_SysNavigationBusiness.DeleteData(ids.ToList<string>());
+            _base_OrganizationBusiness.DeleteData(ids.ToList<string>());
 
             return Success("删除成功！");
         }

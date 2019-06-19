@@ -58,7 +58,7 @@
                 width="80"
                 :formatter="table_StatusFormatter"
               ></el-table-column>
-              <el-table-column prop="CraeteUserName" label="创建人"></el-table-column>
+              <el-table-column prop="CreateUserName" label="创建人"></el-table-column>
               <el-table-column prop="CreateTime" label="创建时间" :formatter="table_DateFormatter"></el-table-column>
               <el-table-column fixed="right" label="操作" width="150">
                 <template slot-scope="scope">
@@ -285,8 +285,8 @@ export default {
         IsShow: true,
         SortNum: "",
         Remarks: "",
-        CraeteUserId: "",
-        CraeteUserName: "",
+        CreateUserId: "",
+        CreateUserName: "",
         CreateTime: ""
       },
       dialogFormVisibleAdd: false,

@@ -73,8 +73,8 @@ namespace Coldairarrow.Business.Base_SysManage
             newData.Id = Guid.NewGuid().ToSequentialGuid();
             newData.ParentId = newData.ParentId.Equals(topNavId) ? string.Empty : newData.ParentId;
             newData.CreateTime = DateTime.Now;
-            newData.CraeteUserId = base_User.UserId;
-            newData.CraeteUserName = base_User.UserName;
+            newData.CreateUserId = base_User.UserId;
+            newData.CreateUserName = base_User.UserName;
             Insert(newData);
         }
 

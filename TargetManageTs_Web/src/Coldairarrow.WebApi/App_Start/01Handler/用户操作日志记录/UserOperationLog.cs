@@ -14,8 +14,14 @@ namespace Coldairarrow.WebApi
     /// </summary>
     public class UserOperationLog : BaseBusiness<Base_SysUserOperationLog>, IUserOperationLog
     {
+        /// <summary>
+        /// 登录之后都采用此特性记录日志
+        /// 登录之后请求都传递Token
+        /// </summary>
+        /// <param name="msg"></param>
         public void WriteLog(string msg)
         {
+            //获取Ip地址的临时写法，这个写法不准确，没考虑代理
             string userName = null, ipAddress = HttpContextCore.Current.Connection.RemoteIpAddress.ToString();
             try
             {
@@ -30,7 +36,7 @@ namespace Coldairarrow.WebApi
             {
                 Id = GuidHelper.GenerateKey(),
                 LogType = EnumType.LogType.用户操作.ToString(),
-                LogContent = $"[{ipAddress}]地址的[{userName}]用户操作记录：{msg}",
+                LogContent = $"[{DateTime.Now.ToCstTime().ToString("yyyy-MM-dd HH:mm:ss")}][{ipAddress}]地址的[{userName}]用户操作记录：{msg}",
                 OpTime = DateTime.Now.ToCstTime(),
                 OpUserName = userName
             };

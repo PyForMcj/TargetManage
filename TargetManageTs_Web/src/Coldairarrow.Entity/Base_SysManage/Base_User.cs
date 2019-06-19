@@ -26,6 +26,11 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String UserId { get; set; }
 
         /// <summary>
+        /// 组织机构Id
+        /// </summary>
+        public String OrganizationId { get; set; }
+
+        /// <summary>
         /// 用户名
         /// </summary>
         public String UserName { get; set; }
@@ -72,14 +77,14 @@ namespace Coldairarrow.Entity.Base_SysManage
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// CraeteUserId
+        /// CreateUserId
         /// </summary>
-        public String CraeteUserId { get; set; }
+        public String CreateUserId { get; set; }
 
         /// <summary>
-        /// CraeteUserName
+        /// CreateUserName
         /// </summary>
-        public String CraeteUserName { get; set; }
+        public String CreateUserName { get; set; }
 
         /// <summary>
         /// 用户与角色关系集合

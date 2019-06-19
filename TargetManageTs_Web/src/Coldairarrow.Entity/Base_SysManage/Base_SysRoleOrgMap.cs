@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Coldairarrow.Entity.Base_SysManage
 {
     /// <summary>
-    /// 菜单与按钮关系表
+    /// Base_SysRoleOrgMap
     /// </summary>
-    [Table("Base_SysNavButtonMap")]
-    public class Base_SysNavButtonMap
+    [Table("Base_SysRoleOrgMap")]
+    public class Base_SysRoleOrgMap
     {
 
         /// <summary>
@@ -18,14 +18,14 @@ namespace Coldairarrow.Entity.Base_SysManage
         public String Id { get; set; }
 
         /// <summary>
-        /// BtnId
+        /// RoleId
         /// </summary>
-        public String BtnId { get; set; }
+        public String RoleId { get; set; }
 
         /// <summary>
-        /// NavId
+        /// OrgId
         /// </summary>
-        public String NavId { get; set; }
+        public String OrgId { get; set; }
 
         /// <summary>
         /// CreateTime

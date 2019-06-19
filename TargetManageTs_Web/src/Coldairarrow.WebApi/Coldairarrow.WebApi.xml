@@ -139,6 +139,13 @@
             用户操作日志
             </summary>
         </member>
+        <member name="M:Coldairarrow.WebApi.UserOperationLog.WriteLog(System.String)">
+            <summary>
+            登录之后都采用此特性记录日志
+            登录之后请求都传递Token
+            </summary>
+            <param name="msg"></param>
+        </member>
         <member name="T:Coldairarrow.WebApi.UserOperationLogAttribute">
             <summary>
             用户操作记录过滤器
@@ -394,13 +401,12 @@
             用户登录
             </summary>
         </member>
-        <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.#ctor(Coldairarrow.WebApi.IJwtAppService,Coldairarrow.Business.Base_SysManage.IHomebusiness,Coldairarrow.WebApi.IUserOperationLog)">
+        <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.#ctor(Coldairarrow.WebApi.IJwtAppService,Coldairarrow.Business.Base_SysManage.IHomebusiness)">
             <summary>
             构造方法
             </summary>
             <param name="jwtApp"></param>
             <param name="homebus"></param>
-            <param name="userOperationLog"></param>
         </member>
         <member name="M:Coldairarrow.WebApi.Controllers.Login_Manage.Base_LoginController.LoginSubmit(Coldairarrow.Entity.SecretDto)">
             <summary>

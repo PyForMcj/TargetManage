@@ -160,6 +160,86 @@
             排序编号
             </summary>
         </member>
+        <member name="T:Coldairarrow.Entity.Base_SysManage.Base_Organization">
+            <summary>
+            Base_Organization
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.ParentID">
+            <summary>
+            ParentID
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.OrgName">
+            <summary>
+            OrgName
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.OrgFullName">
+            <summary>
+            OrgFullName
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.OrgCode">
+            <summary>
+            OrgCode
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.ParentOrgCode">
+            <summary>
+            ParentOrgCode
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.OrgType">
+            <summary>
+            OrgType
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.OrgLevle">
+            <summary>
+            OrgLevle
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.Path">
+            <summary>
+            Path
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.Creator">
+            <summary>
+            Creator
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.CreateTime">
+            <summary>
+            CreateTime
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.ModifiedUser">
+            <summary>
+            ModifiedUser
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.ModifiedTime">
+            <summary>
+            ModifiedTime
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.DeleteFlag">
+            <summary>
+            DeleteFlag
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_Organization.Order">
+            <summary>
+            Order
+            </summary>
+        </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_PermissionAppId">
             <summary>
             AppId权限表
@@ -270,14 +350,14 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButton.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButton.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButton.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButton.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysButtonType">
@@ -310,14 +390,14 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButtonType.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButtonType.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButtonType.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysButtonType.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysLog">
@@ -375,14 +455,14 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavButtonMap.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavButtonMap.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavButtonMap.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavButtonMap.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation">
@@ -441,14 +521,14 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysNavigation.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysNavigationDto">
@@ -541,14 +621,14 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleButtonMap.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleButtonMap.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleButtonMap.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleButtonMap.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysRoleNavMap">
@@ -576,14 +656,49 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleNavMap.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleNavMap.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleNavMap.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleNavMap.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap">
+            <summary>
+            Base_SysRoleOrgMap
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap.RoleId">
+            <summary>
+            RoleId
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap.OrgId">
+            <summary>
+            OrgId
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap.CreateTime">
+            <summary>
+            CreateTime
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap.CreateUserId">
+            <summary>
+            CreateUserId
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_SysRoleOrgMap.CreateUserName">
+            <summary>
+            CreateUserName
             </summary>
         </member>
         <member name="T:Coldairarrow.Entity.Base_SysManage.Base_SysUserOperationLog">
@@ -656,6 +771,11 @@
             用户Id,逻辑主键
             </summary>
         </member>
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.OrganizationId">
+            <summary>
+            组织机构Id
+            </summary>
+        </member>
         <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.UserName">
             <summary>
             用户名
@@ -702,14 +822,14 @@
             CreateTime
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.CraeteUserId">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.CreateUserId">
             <summary>
-            CraeteUserId
+            CreateUserId
             </summary>
         </member>
-        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.CraeteUserName">
+        <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.CreateUserName">
             <summary>
-            CraeteUserName
+            CreateUserName
             </summary>
         </member>
         <member name="P:Coldairarrow.Entity.Base_SysManage.Base_User.Base_UserRoleMaps">

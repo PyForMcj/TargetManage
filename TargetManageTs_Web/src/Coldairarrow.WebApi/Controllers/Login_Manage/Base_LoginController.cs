@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Coldairarrow.Entity;
 using Coldairarrow.Business.Base_SysManage;
 using Coldairarrow.Util;
+using Coldairarrow.Entity.Base_SysManage;
 
 namespace Coldairarrow.WebApi.Controllers.Login_Manage
 {
@@ -39,8 +40,7 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         /// </summary>
         /// <param name="jwtApp"></param>
         /// <param name="homebus"></param>
-        /// <param name="userOperationLog"></param>
-        public Base_LoginController(IJwtAppService jwtApp, IHomebusiness homebus, IUserOperationLog userOperationLog)
+        public Base_LoginController(IJwtAppService jwtApp, IHomebusiness homebus)
         {
             _jwtApp = jwtApp;
             _homeBus = homebus;
@@ -55,7 +55,6 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
         [HttpPost("LoginSubmit")]
         [AllowAnonymous]
         [CheckParamNotEmpty("username", "password")]
-        [TypeFilter(typeof(UserOperationLogAttribute),Arguments = new object[] { "登录系统"})]
         public IActionResult LoginSubmit(SecretDto dto)
         {
             //Todo：获取用户信息
@@ -82,6 +81,32 @@ namespace Coldairarrow.WebApi.Controllers.Login_Manage
                     });
 
             var jwt = _jwtApp.Create(user);
+
+            #region 登录系统的操作记录单写，主要是登录系统时，Token还没有传递
+            //获取Ip地址的临时写法，这个写法不准确，没考虑代理
+            string ipAddress = HttpContextCore.Current.Connection.RemoteIpAddress.ToString();
+            Base_SysUserOperationLog sysUserOperationLog = new Base_SysUserOperationLog
+            {
+                Id = GuidHelper.GenerateKey(),
+                LogType = EnumType.LogType.用户操作.ToString(),
+                LogContent = $"[{DateTime.Now.ToCstTime().ToString("yyyy-MM-dd HH:mm:ss")}][{ipAddress}]地址的["+ user.RealName + "]用户操作记录：登录系统",
+                OpTime = DateTime.Now.ToCstTime(),
+                OpUserName = user.RealName
+            };
+            Task.Run(() =>
+            {
+                try
+                {
+                    Base_SysUserOperationLogBusiness _base_SysUserOperationLogBusiness = new Base_SysUserOperationLogBusiness();
+                    _base_SysUserOperationLogBusiness.Insert(sysUserOperationLog);
+                }
+                catch
+                {
+
+                }
+            });
+            #endregion
+
             return Ok(
                 new AjaxResult
                 {

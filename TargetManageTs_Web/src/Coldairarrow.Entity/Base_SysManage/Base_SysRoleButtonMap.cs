@@ -33,14 +33,14 @@ namespace Coldairarrow.Entity.Base_SysManage
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// CraeteUserId
+        /// CreateUserId
         /// </summary>
-        public String CraeteUserId { get; set; }
+        public String CreateUserId { get; set; }
 
         /// <summary>
-        /// CraeteUserName
+        /// CreateUserName
         /// </summary>
-        public String CraeteUserName { get; set; }
+        public String CreateUserName { get; set; }
 
     }
 }
